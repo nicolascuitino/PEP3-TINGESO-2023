@@ -29,5 +29,5 @@ spring:
         - id: preguntaService
           uri: lb://preguntas
           predicates:
-            - Path=/preguntas/**
+            - Path=/preguntaService/**
         

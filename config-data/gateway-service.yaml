@@ -30,4 +30,9 @@ spring:
           uri: lb://preguntaService
           predicates:
             - Path=/preguntaService/**
+
+        - id: pruebaService
+          uri: lb://pruebaService
+          predicates:
+            - Path=/pruebaService/**
         

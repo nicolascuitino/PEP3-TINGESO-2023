@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/preguntas")
+@RequestMapping("/preguntaService")
 public class PreguntaController {
     @Autowired
     PreguntaService preguntaService;
@@ -42,6 +43,15 @@ public class PreguntaController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(pregunta);
+    }
+
+    @GetMapping("/get/facil")
+    public ResponseEntity<List<PreguntaEntity>> getPreguntasFacil(){
+        List<PreguntaEntity> preguntas = preguntaService.getPreguntasFacil();
+        if(preguntas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(preguntas);
     }
 
 }

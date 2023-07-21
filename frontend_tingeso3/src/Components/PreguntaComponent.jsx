@@ -12,7 +12,7 @@ class PreguntaComponent extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8090/preguntas/getall")
+        fetch("http://localhost:8080/preguntaService/getall")
           .then((response) => response.json())
           .then((data) => this.setState({ datas: data }));
       }

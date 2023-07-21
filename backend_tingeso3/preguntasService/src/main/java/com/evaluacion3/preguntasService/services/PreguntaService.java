@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class PreguntaService {
@@ -27,5 +29,16 @@ public class PreguntaService {
     public PreguntaEntity getPregunta(Integer id){
         ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findAll();
         return preguntas.get(id-1);
+    }
+
+    public List<PreguntaEntity> getPreguntasFacil(){
+        ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findByDificultad("facil");
+        List<PreguntaEntity> cuatroPreguntas = new ArrayList<>();
+        Random rndm = new Random();
+
+        for (int i = 0; i < 3; i++){
+            cuatroPreguntas.add(preguntas.get(rndm.nextInt(preguntas.size())));
+        }
+        return cuatroPreguntas;
     }
 }

@@ -27,7 +27,7 @@ spring:
             allow-credentials: true
       routes:
         - id: preguntaService
-          uri: lb://preguntas
+          uri: lb://preguntaService
           predicates:
             - Path=/preguntaService/**
         

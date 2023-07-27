@@ -21,6 +21,12 @@ public class PreguntaController {
         return "La pregunta se ha creado con exito";
     }
 
+    @PostMapping("/post2")
+    public ResponseEntity<PreguntaEntity> postPregunta2(@RequestBody PreguntaEntity pregunta){
+        PreguntaEntity newPregunta = preguntaService.postPregunta(pregunta);
+        return ResponseEntity.ok(newPregunta);
+    }
+
     @GetMapping("/getall")
     public ResponseEntity<ArrayList<PreguntaEntity>> getPreguntas(){
         ArrayList<PreguntaEntity> preguntas = preguntaService.getPreguntas();
@@ -45,9 +51,27 @@ public class PreguntaController {
         return ResponseEntity.ok(pregunta);
     }
 
-    @GetMapping("/get/facil")
+    @GetMapping("/get/basico")
     public ResponseEntity<List<PreguntaEntity>> getPreguntasFacil(){
-        List<PreguntaEntity> preguntas = preguntaService.getPreguntasFacil();
+        List<PreguntaEntity> preguntas = preguntaService.getPreguntasBasico();
+        if(preguntas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(preguntas);
+    }
+
+    @GetMapping("/get/intermedio")
+    public ResponseEntity<List<PreguntaEntity>> getPreguntasIntermedio(){
+        List<PreguntaEntity> preguntas = preguntaService.getPreguntasIntermedio();
+        if(preguntas.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(preguntas);
+    }
+
+    @GetMapping("/get/avanzado")
+    public ResponseEntity<List<PreguntaEntity>> getPreguntasAvanzado(){
+        List<PreguntaEntity> preguntas = preguntaService.getPreguntasAvanzado();
         if(preguntas.isEmpty()){
             return ResponseEntity.noContent().build();
         }

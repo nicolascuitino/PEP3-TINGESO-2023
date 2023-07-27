@@ -24,8 +24,20 @@ public class PruebaService {
     @Autowired
     RestTemplate restTemplate;
 
-    public List<PreguntaModel> obtenerPreguntasFacil() {
-        List<PreguntaModel> preguntas = restTemplate.getForObject("http://gateway-service:8080/preguntaService/get/facil", List.class);
+    public List<PreguntaModel> obtenerPreguntasBasico() {
+        List<PreguntaModel> preguntas = restTemplate.getForObject("http://localhost:8080/preguntaService/get/basico", List.class);
+        return objectMapper.convertValue(preguntas, new TypeReference<>(){
+        });
+    }
+
+    public List<PreguntaModel> obtenerPreguntasIntermedio() {
+        List<PreguntaModel> preguntas = restTemplate.getForObject("http://localhost:8080/preguntaService/get/intermedio", List.class);
+        return objectMapper.convertValue(preguntas, new TypeReference<>(){
+        });
+    }
+
+    public List<PreguntaModel> obtenerPreguntasAvanzado() {
+        List<PreguntaModel> preguntas = restTemplate.getForObject("http://localhost:8080/preguntaService/get/avanzado", List.class);
         return objectMapper.convertValue(preguntas, new TypeReference<>(){
         });
     }
@@ -39,7 +51,17 @@ public class PruebaService {
         nuevaPrueba.setDificultad(dificultad);
         nuevaPrueba.setPuntaje(0);
 
-        return pruebaRepository.save(nuevaPrueba);
+        nuevaPrueba.setP1_e(preguntas.get(0).getCodigo());
+        nuevaPrueba.setP1_r(preguntas.get(0).getRespuesta());
+        nuevaPrueba.setP2_e(preguntas.get(1).getCodigo());
+        nuevaPrueba.setP2_r(preguntas.get(1).getRespuesta());
+        nuevaPrueba.setP3_e(preguntas.get(2).getCodigo());
+        nuevaPrueba.setP3_r(preguntas.get(2).getRespuesta());
+        nuevaPrueba.setP4_e(preguntas.get(3).getCodigo());
+        nuevaPrueba.setP4_r(preguntas.get(3).getRespuesta());
+
+        pruebaRepository.save(nuevaPrueba);
+        return nuevaPrueba;
     }
 
     public ArrayList<PruebaEntity> getPruebas(){

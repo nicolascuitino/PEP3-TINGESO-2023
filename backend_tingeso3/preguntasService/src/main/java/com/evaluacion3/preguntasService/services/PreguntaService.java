@@ -18,6 +18,14 @@ public class PreguntaService {
         return preguntaRepository.save(pregunta);
     }
 
+    public void postPreguntaArg(String dif, String cod, String resp){
+        PreguntaEntity preg = new PreguntaEntity();
+        preg.setDificultad(dif);
+        preg.setCodigo(cod);
+        preg.setRespuesta(resp);
+
+    }
+
     public ArrayList<PreguntaEntity> getPreguntas(){
         return (ArrayList<PreguntaEntity>) preguntaRepository.findAll();
     }
@@ -31,13 +39,54 @@ public class PreguntaService {
         return preguntas.get(id-1);
     }
 
-    public List<PreguntaEntity> getPreguntasFacil(){
-        ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findByDificultad("facil");
+    public List<PreguntaEntity> getPreguntasBasico(){
+        ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findByDificultad("basico");
         List<PreguntaEntity> cuatroPreguntas = new ArrayList<>();
         Random rndm = new Random();
+        List<Integer> usados = new ArrayList<>();
+        Integer i = 0;
+        while(i < 4){
+            Integer a = rndm.nextInt(preguntas.size());
+            if(!usados.contains(a)){
+                usados.add(a);
+                cuatroPreguntas.add(preguntas.get(a));
+                System.out.println(preguntas.get(a));
+                i = i + 1;
+            }
+        }
+        return cuatroPreguntas;
+    }
 
-        for (int i = 0; i < 3; i++){
-            cuatroPreguntas.add(preguntas.get(rndm.nextInt(preguntas.size())));
+    public List<PreguntaEntity> getPreguntasIntermedio(){
+        ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findByDificultad("intermedio");
+        List<PreguntaEntity> cuatroPreguntas = new ArrayList<>();
+        Random rndm = new Random();
+        List<Integer> usados = new ArrayList<>();
+        Integer i = 0;
+        while(i < 4){
+            Integer a = rndm.nextInt(preguntas.size());
+            if(!usados.contains(a)){
+                usados.add(a);
+                cuatroPreguntas.add(preguntas.get(a));
+                i = i + 1;
+            }
+        }
+        return cuatroPreguntas;
+    }
+
+    public List<PreguntaEntity> getPreguntasAvanzado(){
+        ArrayList<PreguntaEntity> preguntas = (ArrayList<PreguntaEntity>) preguntaRepository.findByDificultad("avanzado");
+        List<PreguntaEntity> cuatroPreguntas = new ArrayList<>();
+        Random rndm = new Random();
+        List<Integer> usados = new ArrayList<>();
+        Integer i = 0;
+        while(i < 4){
+            Integer a = rndm.nextInt(preguntas.size());
+            if(!usados.contains(a)){
+                usados.add(a);
+                cuatroPreguntas.add(preguntas.get(a));
+                i = i + 1;
+            }
         }
         return cuatroPreguntas;
     }

@@ -17,6 +17,7 @@ public class PreguntaEntity {
     private Integer id;
 
     private String dificultad;
+    @Column(columnDefinition="TEXT", length = 1000)
     private String codigo;
     private String respuesta;
 

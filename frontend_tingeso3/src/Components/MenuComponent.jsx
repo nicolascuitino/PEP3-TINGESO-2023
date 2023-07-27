@@ -8,38 +8,79 @@ export default function Menu(){
     const ComenzarFacil = () => {
         localStorage.setItem("puntaje", 0);
         localStorage.setItem("restantes", 4);
-        window.location.href = "/pregunta";
+        window.location.href = "/PruebaBasico";
+      };
+
+      const ComenzarIntermedio = () => {
+        localStorage.setItem("puntaje", 0);
+        localStorage.setItem("restantes", 4);
+        window.location.href = "/PruebaIntermedio";
+      };
+
+      const ComenzarAvanzado = () => {
+        localStorage.setItem("puntaje", 0);
+        localStorage.setItem("restantes", 4);
+        window.location.href = "/PruebaAvanzado";
       };
 
     return(
         <div>
             <GlobalStyle />
             <HomeStyle>
-            <h1 className="text-center"> <b>Python Exam</b></h1>
+            <header class="header">
+                    <div class="logo">
+                        <h1>Python Master</h1>
+                    </div>
+
+                    <div class="header-img">
+                        <img class="img" src="https://img.freepik.com/iconos-gratis/serpientes_318-368381.jpg?w=2000">
+                        </img>
+                    </div>
+                   
+            </header>
+            <h1 className="text-center"> <b>¡Conviertete en un experto en Python resolviendo nuestras pruebas!</b></h1>
             <div class = "box-area">
-                <div class = "single-box">
-                <button type="button" class="btn btn-primary" onClick={ComenzarFacil}>
-                    Comenzar
-                </button>
+                <div class = "single-box" onClick={ComenzarFacil}>
+                    <a>
+            <           div class = "img-area" >
+                        </div>
+                    </a>
+                    <div class = "img-text">
+                        <span class = "header-text"><strong>Comenzar nivel básico</strong></span>
+                    </div>
                 </div>
+
+                <div class = "single-box" onClick={ComenzarIntermedio}>
+                    <a>
+            <           div class = "img-area" >
+                        </div>
+                    </a>
+                    <div class = "img-text">
+                        <span class = "header-text"><strong>Comenzar nivel intermedio</strong></span>
+                    </div>
+                </div>
+
+                <div class = "single-box" onClick={ComenzarAvanzado}>
+                    <a>
+            <           div class = "img-area" >
+                        </div>
+                    </a>
+                    <div class = "img-text">
+                        <span class = "header-text"><strong>Comenzar nivel avanzado</strong></span>
+                    </div>
+                </div>
+
+
                 <div class = "single-box">
-                    <a href = "/new-proveedor">
+                    <a href = "/nuevaPregunta">
             <           div class = "img-area">
                         </div>
                     </a>
                     <div class = "img-text">
-                        <span class = "header-text"><strong>Ingresar Proveedores</strong></span>
+                        <span class = "header-text"><strong>Ingresar Nueva Pregunta</strong></span>
                     </div>
                 </div>
-                <div class = "single-box">
-                    <a href = "/listar">
-                        <div class = "img-area">
-                        </div>
-                    </a>
-                    <div class = "img-text">
-                        <span class = "header-text"><strong>Ver Proveedores</strong></span>
-                    </div>
-                </div>
+                
             </div>
             <h6 className="text-center"> MTINGSW 2023</h6>
             </HomeStyle>
@@ -50,11 +91,13 @@ export default function Menu(){
 const GlobalStyle = createGlobalStyle`
     body { 
         background-color: #262626;
+        font-family: 'Trebuchet MS',serif;
 `
 const HomeStyle = styled.nav`
 
 .box-area{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -92,17 +135,55 @@ body{
     background-position: center center;
 }
 
+.header{
+    background-color: #1b3039;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 85px;
+    padding: 5px 10%;
+}
+
+.header .logo{
+    margin-right: auto;
+    color: white;
+    font-family: 'Trebuchet MS',serif;
+}
+
+.header .header-img{
+    object-fit: contain;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border: 6px solid #ddd;
+    border-radius: 50%;
+    
+    background: white;
+    
+}
+
+.header .header-img .img{
+    
+    max-width: 100%;
+    max-height: 100%;
+    
+    
+}
+
 .single-box:nth-child(1) .img-area{
-    background-image: url(https://img.freepik.com/vector-premium/chat-archivo-documento-texto-comentando-o-editando-documentos-linea-ilustracion-dibujos-animados-plana_101884-838.jpg)
+    background-image: url(https://st2.depositphotos.com/5266903/8119/v/600/depositphotos_81197654-stock-illustration-examination-flat-eco-green-color.jpg)
 }
 .single-box:nth-child(2) .img-area{
-    background-image: url(http://static1.squarespace.com/static/55c7a3e2e4b0fa365689d8aa/55e0aceae4b0643202e59629/55e322ade4b077beb0266329/1590769127854/?format=1500w)
+    background-image: url(https://st2.depositphotos.com/5266903/8986/v/600/depositphotos_89861616-stock-illustration-test-form-rounded-vector-icon.jpg)
 }
 .single-box:nth-child(3) .img-area{
-    background-image: url(https://img.freepik.com/vector-gratis/ingresos-netos-calculando-ilustracion-concepto-abstracto-calculo-sueldos-formula-ingresos-netos-salario-neto-contabilidad-corporativa-calculo-ganancias-estimacion-ganancias_335657-1238.jpg?w=2000)
+    background-image: url(https://st2.depositphotos.com/5266903/8119/v/600/depositphotos_81198296-stock-illustration-examination-flat-red-color-rounded.jpg)
 }
 .single-box:nth-child(4) .img-area{
-    background-image: url(https://previews.123rf.com/images/magurok/magurok1606/magurok160600092/60046224-lado-la-celebraci%C3%B3n-de-solicitud-de-trabajo-aprobado-aprobado-cv-con-el-sello-la-l%C3%ADnea-delgada-plana.jpg)
+    background-image: url(https://icon-library.com/images/new-item-icon/new-item-icon-12.jpg)
 }
 .single-box:nth-child(5) .img-area{
     background-image: url(https://media.istockphoto.com/vectors/agreement-contract-and-offer-color-line-icon-proposal-linear-vector-vector-id1271477227?k=20&m=1271477227&s=612x612&w=0&h=XOSF2ISnfGJZ7bb-fU7rRdDJzTKehDmOF9kcJ5gIEmA=)
